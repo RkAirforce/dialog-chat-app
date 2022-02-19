@@ -30,18 +30,6 @@
           </v-icon>
         </v-btn>
       </v-banner>
-      <v-tabs
-        v-model="tab"
-        color="info"
-        fixed-tabs
-      >
-        <v-tab
-          v-for="(item, index) in items"
-          :key="index"
-        >
-          {{ item.name }}
-        </v-tab>
-      </v-tabs>
       <ValidationObserver ref="form" v-slot="{ invalid }" immediate>
         <v-container>
           <v-form>
@@ -62,7 +50,7 @@
                 class="white--text"
                 @click="postComment"
               >
-                コメントする
+                つぶやく
               </v-btn>
             </v-card-text>
           </v-form>
@@ -77,12 +65,6 @@ import TextAreaWithValidation from '~/components/atoms/TextAreaWithValidation'
 export default {
   components: {
     TextAreaWithValidation
-  },
-  props: {
-    post: {
-      type: Object,
-      default: null
-    }
   },
   data () {
     return {
@@ -103,12 +85,11 @@ export default {
       this.loading = true
       if (isValid) {
         formData.append('comment[user_id]', this.$auth.user.id)
-        formData.append('comment[post_id]', this.post.id)
         formData.append('comment[content]', this.content)
-        await this.$axios.$post('/api/v1/comments', formData)
+        await this.$axios.$post('/api/v1/posts', formData)
           .then(
             (response) => {
-              this.$store.commit('comments/addComments', response, { root: true })
+              this.$store.commit('posts/addPosts', response, { root: true })
               this.content = ''
               this.$refs.form.reset()
             },

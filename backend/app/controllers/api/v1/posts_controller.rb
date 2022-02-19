@@ -1,10 +1,9 @@
 class Api::V1::PostsController < ApplicationController
-  before_action
-
   def index
   end
 
   def show
+    
   end
 
   def create
