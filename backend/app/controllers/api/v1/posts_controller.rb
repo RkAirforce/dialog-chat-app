@@ -1,12 +1,20 @@
 class Api::V1::PostsController < ApplicationController
+  before_action :set_user, only: :create
+
   def index
+    render json: user_signed_in?
   end
 
   def show
-    
+
   end
 
   def create
+    post = Post.new(post_params)
+    post.user = @user
+    if post.save
+      render json: post
+    end
   end
 
   def update
@@ -22,5 +30,11 @@ class Api::V1::PostsController < ApplicationController
   end
 
 private
-  params.require(:post).permit(:content)
+  def set_user
+    @user = User.find(post_params[:user_id])
+  end
+
+  def post_params
+    params.require(:post).permit(:user_id, :content)
+  end
 end

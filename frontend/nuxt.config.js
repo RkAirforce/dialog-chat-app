@@ -25,8 +25,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    'plugins/vee-validate',
+    'plugins/auth',
     'plugins/localStorage',
+    'plugins/vee-validate'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -42,6 +43,23 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    [
+      'nuxt-i18n',
+      {
+        locales: [
+          { code: 'ja', name: 'Japanese', iso: 'ja_JP', file: 'ja.json' },
+          { code: 'en', name: 'English', iso: 'en-US', file: 'en.json' }
+        ],
+        defaultLocale: 'en',
+        langDir: 'locales/',
+        strategy: 'no_prefix',
+        vueI18n: {
+          fallbackLocale: 'en',
+        },
+        vueI18nLoader: true,
+        lazy: true,
+      },
+    ],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

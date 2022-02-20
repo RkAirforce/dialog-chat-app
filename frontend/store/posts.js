@@ -25,5 +25,8 @@ export const mutations = {
       }
       return post
     })
-  }
+  },
+  addPosts (state, post) {
+    state.posts.push(post)
+  },
 }

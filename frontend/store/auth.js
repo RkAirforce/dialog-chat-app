@@ -8,11 +8,25 @@ export const actions = {
   getCurrentUser ({ commit }, user) {
     commit('setCurrentUser', user)
   },
-  async login ({ dispatch }, params) {
-    await this.$axios.$post('/api/v1/user_token', params)
+  async signup ({ dispatch }, params) {
+    await this.$axios.$post('/api/v1/auth', params)
       .then(
         (response) => {
-          dispatch('authSuccessful', response)
+          console.log(response)
+          dispatch('authSuccessful', response.data)
+          this.$router.push('/')
+        },
+        (error) => {
+          dispatch('authFailure', error)
+        }
+      )
+  },
+  async login ({ dispatch }, params) {
+    await this.$axios.$post('/api/v1/auth/sign_in', params)
+      .then(
+        (response) => {
+          console.log(response.data)
+          dispatch('authSuccessful', response.data)
           this.$router.push('/')
         },
         (error) => {

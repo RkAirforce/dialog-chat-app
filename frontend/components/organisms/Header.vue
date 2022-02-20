@@ -20,12 +20,18 @@
       ChatTest
     </v-toolbar-title>
     <v-spacer />
+    <LoginBar
+     v-if="$auth.loggedIn"
+    />
   </v-app-bar>
 </template>
 
 <script>
-
+import LoginBar from '~/components/molecles/LoginBar'
 export default {
+  components: {
+    LoginBar
+  },
   data () {
     return {
       menus: [

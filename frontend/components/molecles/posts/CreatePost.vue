@@ -48,7 +48,7 @@
                 block
                 color="warning"
                 class="white--text"
-                @click="postComment"
+                @click="createPost"
               >
                 つぶやく
               </v-btn>
@@ -71,21 +71,17 @@ export default {
       content: '',
       dialog: false,
       loading: false,
-      tab: null,
-      items: [
-        { name: '編集' },
-        { name: 'プレビュー' }
-      ]
+      tab: null
     }
   },
   methods: {
-    async postComment () {
+    async createPost () {
       const isValid = await this.$refs.form.validate()
       const formData = new FormData()
       this.loading = true
       if (isValid) {
-        formData.append('comment[user_id]', this.$auth.user.id)
-        formData.append('comment[content]', this.content)
+        formData.append('post[user_id]', this.$auth.user.id)
+        formData.append('post[content]', this.content)
         await this.$axios.$post('/api/v1/posts', formData)
           .then(
             (response) => {

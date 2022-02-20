@@ -17,7 +17,7 @@
             class="my-8 text-center"
           >
             <h1 class="text-h5 font-weight-bold">
-              ログイン
+              {{ pageTitle }}
             </h1>
           </v-col>
           <v-card
@@ -38,7 +38,7 @@
 export default {
   data ({ $route }) {
     return {
-      pageTitle: this.$t(`pages.${$route.name}`)
+      pageTitle: this.$t(`title.${$route.name}`)
     }
   }
 }

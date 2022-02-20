@@ -27,16 +27,16 @@
               block
               color="warning"
               class="white--text"
-              @click="signup"
+              @click="signIn"
             >
-              登録する
+              ログインする
             </v-btn>
           </v-card-text>
           <v-divider />
           <v-card-text class="pb-8">
-            <span>すでにアカウントをお持ちですか？</span>
-            <nuxt-link to="/signin">
-              ログインに移動
+            <span>アカウントをお持ちでない方</span>
+            <nuxt-link to="/signup">
+              新規会員登録に移動
             </nuxt-link>
           </v-card-text>
         </v-form>
@@ -46,13 +46,46 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import TextFieldWithValidation from '~/components/atoms/TextFieldWithValidation'
 import FormTemplate from '~/components/molecles/FormTemplate'
 
 export default {
- components: {
-   TextFieldWithValidation,
-   FormTemplate
- }
+  components: {
+    TextFieldWithValidation,
+    FormTemplate
+  },
+  middreware: 'authenticated',
+  data () {
+    return {
+      show: false,
+      loading: false,
+      email: '',
+      password: '',
+      guest: {
+        auth: {
+          email: 'guestuser@example.com',
+          password: 'guestuser'
+        }
+      }
+    }
+  },
+  methods: {
+    ...mapActions({
+      userLogin: 'auth/login'
+    }),
+     signIn() {
+      const isValid = this.$refs.form.validate()
+      const formData = new FormData()
+      this.loading = true
+      formData.append('email', this.email)
+      formData.append('password', this.password)
+      
+      if (isValid) {
+        this.userLogin(formData)
+      }
+      this.loading = false
+    }
+  }
 }
 </script>
