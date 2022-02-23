@@ -11,7 +11,7 @@
       v-on="on"
     >
       <v-avatar v-if="$auth.user.image" color="white" size="34">
-        <v-img :src="$auth.user.image" />
+        <v-img :src="$auth.user.image.url" />
       </v-avatar>
       <v-icon v-else size="34">
         mdi-account-circle
@@ -57,6 +57,18 @@
         </v-list-item-icon>
         <v-list-item-title>
           プロフィール編集
+        </v-list-item-title>
+      </v-list-item>
+      <v-list-item
+        :to="{ path: '/posts/timeline' }"
+      >
+        <v-list-item-icon class="mr-2">
+          <v-icon size="22">
+            mdi-account-cog
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>
+          タイムライン
         </v-list-item-title>
       </v-list-item>
       <v-list-item @click="logout">

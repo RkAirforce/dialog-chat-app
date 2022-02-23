@@ -1,8 +1,28 @@
 <template>
-  <div>
-    {{ number }}
-    {{ $auth.user }}
-  </div>
+  <v-container>
+    <v-row>
+      <v-col>
+        <v-btn
+          outlined
+          color="warning"
+          class="ml-2 font-weight-bold"
+          to="/signup"
+        >
+          {{ $t('title.signup') }}
+        </v-btn>
+      </v-col>
+      <v-col>
+        <v-btn
+          outlined
+          color="info"
+          class="ml-2 font-weight-bold"
+          to="/signin"
+        >
+          {{ $t('title.signin') }}
+        </v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

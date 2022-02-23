@@ -34,6 +34,10 @@ class Authentication {
     this.$axios.$delete('/api/v1/auth/sign_out')
     this.store.dispatch('getCurrentUser', null)
     this.store.dispatch('logout')
+    localStorage.removeItem("access-token")
+    localStorage.removeItem("client")
+    localStorage.removeItem("uid")
+    localStorage.removeItem("token-type")
   }
 }
 

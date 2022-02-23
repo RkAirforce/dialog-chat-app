@@ -2,18 +2,15 @@ class Api::V1::PostsController < ApplicationController
   before_action :set_user, only: :create
 
   def index
-    render json: user_signed_in?
-  end
-
-  def show
-
+    posts = Post.includes(:user).all
+    render json: posts.as_json(include: {user: {only: %w[image name]}})
   end
 
   def create
     post = Post.new(post_params)
     post.user = @user
     if post.save
-      render json: post
+      render json: post.as_json(include: :user)
     end
   end
 
@@ -24,7 +21,6 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def auto_loading
-    user = User.find(params[:id])
     last_message_id = params[:id].to_i
     @messages = group.messages.includes(:user).where("id > #{last_message_id}")
   end
