@@ -40,4 +40,8 @@ Twitter のようなコメントを登録し、タイムラインに表示する
 
 ![signin.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/321060/b12a089e-f7ad-f1bb-a0b4-33dcfa107df8.png)
 
+**メッセージ自動更新**
+
+![signin.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/321060/01b76745-0b1a-ce0b-ed2c-71cf92989dcf.gif)
+
 
