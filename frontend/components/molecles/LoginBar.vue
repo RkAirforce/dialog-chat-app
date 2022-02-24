@@ -59,18 +59,6 @@
           プロフィール編集
         </v-list-item-title>
       </v-list-item>
-      <v-list-item
-        :to="{ path: '/posts/timeline' }"
-      >
-        <v-list-item-icon class="mr-2">
-          <v-icon size="22">
-            mdi-account-cog
-          </v-icon>
-        </v-list-item-icon>
-        <v-list-item-title>
-          タイムライン
-        </v-list-item-title>
-      </v-list-item>
       <v-list-item @click="logout">
         <v-list-item-icon class="mr-2">
           <v-icon size="22">

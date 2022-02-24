@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import CreatedPosts from '~/components/molecles/posts/CreatedPosts'
 import CreatePost from '~/components/molecles/posts/CreatePost'
 
@@ -62,8 +62,8 @@ export default {
       loading: false
     }
   },
-  methods: {
-
+  created() {
+    setInterval(this.autoLoadPosts, 5000)
   },
   async fetch ({ $axios, params, store }) {
     this.loading = true
@@ -80,7 +80,32 @@ export default {
   },
   computed: {
     ...mapGetters({ user: 'users/user' }),
-    ...mapGetters({ posts: 'posts/posts' }),
+    ...mapGetters({ posts: 'posts/posts' })
+  },
+  methods: {
+    autoLoadPosts() {
+      const last_post = this.posts[this.posts.length - 1]
+      if(last_post) {
+        this.$axios.get('api/v1/posts/',{
+          params: {
+            id: last_post.id,
+            user_id: this.user.id
+          }
+        })
+          .then((response) => {
+            let new_posts = response.data
+            console.log(new_posts)
+            if(new_posts.length > 0) {
+              new_posts.forEach((new_post) => {
+                this.$store.commit('posts/addPosts', new_post, { root: true })
+              })
+            }
+          })
+          .catch((error) => {
+            return error
+          })
+      }
+    }
   }
 }
 </script>

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
         registrations: 'api/v1/auth/registrations',
         sessions: 'api/v1/auth/sessions'
       }
-      resources :posts, only: %i[index create]
+      resources :posts, only: %i[index create destroy]
       resources :users, only: %i[show]
       get :logged_in, param: :uid, to: "logged_in#show"
     end

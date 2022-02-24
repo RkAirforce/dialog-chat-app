@@ -21,7 +21,7 @@
     >
       <v-col cols="12" class="pb-0">
         <nuxt-link
-          :to="{ path: `/users/${post.user.id}` }"
+          :to="{ path: `/users/${post.user_id}` }"
           style="color: inherit; text-decoration: none;"
         >
           <v-avatar
@@ -47,7 +47,7 @@
           {{ post.content }}
         </v-card-text>
         <v-card-text class="px-0">
-          {{ post.created_at }}
+          {{ $moment(post.created_at).format('YYYY/MM/DD HH:MM') }}
         </v-card-text>
       </v-col>
     </v-row>

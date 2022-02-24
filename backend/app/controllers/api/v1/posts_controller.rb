@@ -1,8 +1,11 @@
 class Api::V1::PostsController < ApplicationController
   before_action :set_user, only: :create
 
+  # 自動更新機能(5秒毎に呼び出す)
   def index
-    posts = Post.includes(:user).all
+    user = User.find_by(id: params[:user_id])
+    uniq_usr_last_post_id = params[:id].to_i
+    posts = user.posts.includes(:user).where("id > #{uniq_usr_last_post_id}")
     render json: posts.as_json(include: {user: {only: %w[image name]}})
   end
 
@@ -18,11 +21,6 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def destroy
-  end
-
-  def auto_loading
-    last_message_id = params[:id].to_i
-    @messages = group.messages.includes(:user).where("id > #{last_message_id}")
   end
 
 private
