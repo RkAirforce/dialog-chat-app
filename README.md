@@ -21,9 +21,11 @@ Twitter のようなコメントを登録し、タイムラインに表示する
 
 #### 画面
 **トップ画面**
+
 ![top.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/321060/bd3a3d02-b078-16ff-6766-ee8d3cf114e2.png)
 
 **新規会員登録**
+
 ![signup.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/321060/ac7f7e81-d9a7-52ec-25b4-2bea2588b341.png)
 
 **ログイン画面**
