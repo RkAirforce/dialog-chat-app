@@ -28,6 +28,9 @@
                     mdi-account-circle
                   </v-icon>
                   <span class="pl-2">{{ user.name }}</span>
+                  <v-card-text>
+                    {{ user.description }}
+                  </v-card-text>
                 </v-card-actions>
               </v-list-item>
             </v-list>

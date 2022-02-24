@@ -25,27 +25,10 @@ export default {
           .then(
             (response) => {
               this.$auth.logout()
-              this.$store.dispatch(
-                'flash/showMessage',
-                {
-                  message: response.message,
-                  color: 'success',
-                  status: true
-                },
-                { root: true }
-              )
               this.$router.push('/')
+              return response
             },
             (error) => {
-              this.$store.dispatch(
-                'flash/showMessage',
-                {
-                  message: error,
-                  color: 'error',
-                  status: true
-                },
-                { root: true }
-              )
               return error
             }
           )
