@@ -14,6 +14,7 @@ export const mutations = {
   },
   setPosts (state, posts) {
     state.posts = posts
+    state.posts = state.posts.sort((a, b) => a.id < b.id ? 1 : -1)
   },
   deletePost (state, postId) {
     state.posts = state.posts.filter(post => post.id !== postId)
@@ -28,5 +29,6 @@ export const mutations = {
   },
   addPosts (state, post) {
     state.posts.push(post)
+    state.posts = state.posts.sort((a, b) => a.id < b.id ? 1 : -1)
   },
 }

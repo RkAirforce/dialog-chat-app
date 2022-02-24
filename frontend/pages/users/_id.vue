@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import CreatedPosts from '~/components/molecles/posts/CreatedPosts'
 import CreatePost from '~/components/molecles/posts/CreatePost'
 
@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     autoLoadPosts() {
-      const last_post = this.posts[this.posts.length - 1]
+      const last_post = this.posts[0]
       if(last_post) {
         this.$axios.get('api/v1/posts/',{
           params: {
@@ -94,7 +94,6 @@ export default {
         })
           .then((response) => {
             let new_posts = response.data
-            console.log(new_posts)
             if(new_posts.length > 0) {
               new_posts.forEach((new_post) => {
                 this.$store.commit('posts/addPosts', new_post, { root: true })
