@@ -106,27 +106,10 @@ export default {
         })
           .then(
             (response) => {
-              this.$store.dispatch(
-                'flash/showMessage',
-                {
-                  message: response.message,
-                  color: 'success',
-                  status: true
-                },
-                { root: true }
-              )
               this.$refs.form.reset()
+              return response
             },
             (error) => {
-              this.$store.dispatch(
-                'flash/showMessage',
-                {
-                  message: '更新に失敗しました',
-                  color: 'error',
-                  status: true
-                },
-                { root: true }
-              )
               return error
             }
           )

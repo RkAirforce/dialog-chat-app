@@ -109,26 +109,8 @@ export default {
           .then(
             (response) => {
               this.$store.dispatch('getCurrentUser', response.data)
-              this.$store.dispatch(
-                'flash/showMessage',
-                {
-                  message: 'ユーザー情報を更新しました',
-                  color: 'success',
-                  status: true
-                },
-                { root: true }
-              )
             },
             (error) => {
-              this.$store.dispatch(
-                'flash/showMessage',
-                {
-                  message: '更新に失敗しました',
-                  color: 'error',
-                  status: true
-                },
-                { root: true }
-              )
               return error
             }
           )
