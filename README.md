@@ -15,4 +15,5 @@ Twitter のようなコメントを登録し、タイムラインに表示する
 |使用技術|詳細|
 |-|-|
 |Rails6(API)|APIサーバー|
+|devise_token_auth/devise|ログイン/ログアウト、プロフィール・パスワードの編集で使用|
 |PostgreSQL|データベース|
