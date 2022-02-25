@@ -36,27 +36,8 @@ export const actions = {
   },
   async authSuccessful ({ dispatch }, response) {
     await this.$auth.login(response)
-    dispatch(
-      'flash/showMessage',
-      {
-        message: 'ログインしました',
-        color: 'success',
-        status: true
-      },
-      { root: true }
-    )
   },
-  authFailure ({ response, dispatch }) {
-    dispatch(
-      'flash/showMessage',
-      {
-        message: 'メールアドレスまたはパスワードが違います',
-        color: 'error',
-        status: true
-      },
-      { root: true }
-    )
-    // eslint-disable-next-line no-console
+  authFailure ({ response }) {
     console.log(response)
   }
 }
